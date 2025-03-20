@@ -11,7 +11,7 @@ function App() {
 
     const getWeather = async () => {
         const apiKey = import.meta.env.VITE_API_KEY; // Use import.meta.env for Vite
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=${apiKey}&units=metric`;
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=${apiKey}&units=imperial`;
 
         try {
             const response = await axios.get(apiUrl);
@@ -43,6 +43,7 @@ function App() {
                     <option value="">Select state</option>
                     <option value="TX">Texas</option>
                     <option value="CA">California</option>
+
                 </select>
                 <select value={country} onChange={(e) => setCountry(e.target.value)}>
                     <option value="">Select country</option>
@@ -55,10 +56,10 @@ function App() {
             {weather && (
                 <div className="weather-info">
                     <h2>{weather.name}</h2>
-                    <p>Temperature: {weather.main.temp}°C</p>
+                    <p>Temperature: {weather.main.temp}°F</p>
                     <p>Weather: {weather.weather[0].description}</p>
                     <p>Humidity: {weather.main.humidity}%</p>
-                    <p>Wind Speed: {weather.wind.speed} m/s</p>
+                    <p>Wind Speed: {weather.wind.speed} mph</p>
                 </div>
             )}
         </div>
